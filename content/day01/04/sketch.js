@@ -1,30 +1,27 @@
+let canvas video
+
 function setup() {
-  createCanvas(400, 400);
-rect(30, 50, 55, 55);
-  triangle(30, 50, 58, 20, 86, 50)
-  line(30, 50, 85, 105)
-  line(30, 105, 85, 50)
-  
+  createCanvas(500, 500);
+  rect(30, 50, 55, 55);
+  triangle(30, 50, 58, 20, 86, 50);
+  line(30, 50, 85, 105);
+  line(30, 105, 85, 50);
 }
-function setup() {
-  createCanvas(400, 400);
-  ellipse(70, 100, 120, 30);
-      beginShape();
-      vertex(26, 50);
-      vertex(115, 50);
-      vertex(100, 100);
-      vertex(40,100 );
-      endShape(CLOSE);  
-  
-  ellipse(70, 46, 90, 30);
-  
-  function setup() {
-  createCanvas(400, 400);
-  rect(100,100,10,150)
-    rect(35,100,150,10)
-  quad(quad(35, 100, 184, 100, 150, 80, 70, 80))
-  
-  
-  
-  
+  function draw() {
+  ellipse(70, 200, 120, 30);
+  beginShape();
+  vertex(26, 150);
+  vertex(115, 150);
+  vertex(100, 200);
+  vertex(40, 200);
+  endShape(CLOSE);
+
+  ellipse(70, 146, 90, 30);
+
+}
+  function draw() {
+    rect(100, 350, 10, 150);
+    rect(35, 350, 150, 10);
+    quad(35, 350, 184, 350, 150, 320, 70, 320)
+
 }
