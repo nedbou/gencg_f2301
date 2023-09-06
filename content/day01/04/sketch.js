@@ -1,6 +1,10 @@
 
-  function setup() {
-  createCanvas(500, 500);
+let canvas;
+
+function setup() {
+  // Canvas setup
+  canvas = createCanvas(windowWidth, windowHeight);
+
   
   rect(30, 50, 55, 55);
   triangle(30, 50, 58, 20, 86, 50);
