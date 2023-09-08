@@ -37,7 +37,7 @@ var circleAlpha = 130;
 var circleColor;
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(windowWidth, windowHeight);
   noFill();
   circleColor = color(0, 0, 0, circleAlpha);
 }
