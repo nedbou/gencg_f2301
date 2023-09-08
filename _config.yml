@@ -36,6 +36,19 @@ plugins:
 # Enable or disable heading anchors
 heading_anchors: true
 
+# Navigation links
+navbar_links:
+  - title: Day 1
+    url: /content/day01/embed.html
+  - title: Day 2
+    url: content/day02/embed.html
+  - title: Day 3
+    url: /content/day03/embed.html
+  - title: Day 4
+    url: content/day04/embed.html
+  
+      # Add more sections as needed
+
 # Aux links for the upper right navigation
 aux_links:
   "GENCG22":
