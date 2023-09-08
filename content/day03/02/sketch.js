@@ -6,7 +6,7 @@ let offsetHours = 0; // Offset for moving hours stripe
 let offsetMilliseconds = 0; // Offset for moving milliseconds stripe
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(windowWidth, windowHeight);
   stripeWidth = width / stripes;
   frameRate(60); // Update 60 times per second
   background(0); // Set background to black
