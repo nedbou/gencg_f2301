@@ -41,11 +41,11 @@ navbar_links:
   - title: Day 1
     url: "/content/day01/embed.html"
   - title: Day 2
-    url: "/content/day02/embed.html"
+    url: "/content/day02/01/embed.html"
   - title: Day 3
-    url: "/content/day03/embed.html"
+    url: "/content/day03/01/embed.html"
   - title: Day 4
-    url: "/content/day04/embed.html"
+    url: "/content/day04/01/embed.html"
   
       # Add more sections as needed
 
@@ -59,7 +59,7 @@ aux_links_new_tab: true
 
 # Sort order for navigation links
 # nav_sort: case_insensitive # default, equivalent to nil
-nav_sort: case_sensitive # Capital letters sorted before lowercase
+#nav_sort: case_sensitive # Capital letters sorted before lowercase
 
 # Back to top link
 back_to_top: true
