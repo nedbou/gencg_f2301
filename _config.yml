@@ -36,16 +36,33 @@ plugins:
 # Enable or disable heading anchors
 heading_anchors: true
 
+# Sort order for navigation links
+# nav_sort: case_insensitive # default, equivalent to nil
+nav_sort: case_sensitive # Capital letters sorted before lowercase
+
+
 # Navigation links
-navbar_links:
-  - title: Day 1
-    url: "/content/day01/embed.html"
-  - title: Day 2
-    url: "/content/day02/01/embed.html"
-  - title: Day 3
-    url: "/content/day03/01/embed.html"
-  - title: Day 4
-    url: "/content/day04/01/embed.html"
+nav:
+  - Home: '/'
+  - Day 1: "/content/day01"
+      - 01: "/content/day01/01/embed.html"
+      - 02: "/content/day01/02/embed.html"
+      - 03: "/content/day01/03/embed.html"
+      - 04: "/content/day01/04/embed.html"
+
+
+  - Day 2: "/content/day02"
+      - 01: "/content/day02/01/embed.html"
+      - 02: "/content/day02/02/embed.html"
+
+  - Day 3: "/content/day03"
+      - 01: "/content/day03/01/embed.html"
+      - 02: "/content/day03/02/embed.html"
+
+  - Day 4: "/content/day04"
+      - 01: "/content/day04/01/embed.html"
+
+  
   
       # Add more sections as needed
 
