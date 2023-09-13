@@ -50,7 +50,8 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 Sketches
 ![Example Image](content/day01/IMG_3050.jpg)
-![Example Image](content/day01/IMG_3095.jpg)
+
+![Example Image](content/day01/IMG_3095.JPG)
 
 {% raw %}
 <iframe src="content/day01/04/embed.html" width="100%" height="450" frameborder="no"></iframe>
