@@ -11,6 +11,9 @@ https://www.youtube.com/results?search_query=the+coding+train+face++camera
 
 
 From there I achieved to only make rectangles on my eyes
+
+![Example Image](content/day06/Bild2.jpg)
+
 {% raw %}
 <iframe src="content/day06/01/embed.html" width="100%" height="450" frameborder="no"></iframe>
 {% endraw %}

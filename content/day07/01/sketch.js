@@ -1,64 +1,90 @@
 let video;
-let canvas;
-let detections = [];
-
-let eyeSize = 20; // Initial size of the animated eyes
-let eyeSpeed = 2; // Speed of eye movement
+let poseNet;
+let leftEyeX = 0;
+let leftEyeY = 0;
+let rightEyeX = 0;
+let rightEyeY = 0;
+let eyeSize = 50;
+let debug = true;
 
 function setup() {
   createCanvas(640, 480);
   video = createCapture(VIDEO);
-  video.size(width, height);
   video.hide();
-
-  canvas = createGraphics(width, height);
-
-  // Load face detection models
-  Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-    faceapi.nets.faceRecognitionNet.loadFromUri('/models')
-  ]).then(startDetection);
-
-  noStroke();
-  fill(0, 255, 0);
+  poseNet = ml5.poseNet(video, modelReady);
+  poseNet.on("pose", gotPoses);
 }
 
-function startDetection() {
-  setInterval(detectFaces, 1000); // Adjust the interval as needed
-}
+function gotPoses(poses) {
+  if (poses.length > 0) {
+    // Assuming the eyes are detected as keypoint 1 and 2
+    let leftEye = poses[0].pose.keypoints[1];
+    let rightEye = poses[0].pose.keypoints[2];
 
-async function detectFaces() {
-  const { width, height } = video;
-  const results = await faceapi.detectAllFaces(video.elt, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptors();
-
-  canvas.clear();
-
-  for (let result of results) {
-    const { x, y, width, height } = result.detection.box;
-    canvas.stroke(0, 255, 0);
-    canvas.noFill();
-    canvas.rect(x, y, width, height);
-
-    // Calculate eye positions within the detected face
-    const leftEyeX = result.landmarks.getLeftEye()[0]._x;
-    const leftEyeY = result.landmarks.getLeftEye()[0]._y;
-    const rightEyeX = result.landmarks.getRightEye()[5]._x;
-    const rightEyeY = result.landmarks.getRightEye()[5]._y;
-
-    // Update eye size and positions for animation
-    eyeSize += random(-eyeSpeed, eyeSpeed);
-    const leftEyeSize = eyeSize;
-    const rightEyeSize = eyeSize;
-
-    // Draw animated eyes
-    canvas.fill(255);
-    canvas.ellipse(leftEyeX, leftEyeY, leftEyeSize, leftEyeSize);
-    canvas.ellipse(rightEyeX, rightEyeY, rightEyeSize, rightEyeSize);
+    if (leftEye.score > 0.5 && rightEye.score > 0.5) {
+      leftEyeX = leftEye.position.x;
+      leftEyeY = leftEye.position.y;
+      rightEyeX = rightEye.position.x;
+      rightEyeY = rightEye.position.y;
+    }
   }
 }
 
+function modelReady() {
+  console.log("model ready");
+}
+
 function draw() {
-  image(video, 0, 0, width, height);
-  image(canvas, 0, 0, width, height);
+  image(video, 0, 0);
+
+  if (debug) {
+    // Calculate the center of the left eye
+    let leftEyeCenterX = leftEyeX;
+    let leftEyeCenterY = leftEyeY;
+
+    // Calculate the center of the right eye
+    let rightEyeCenterX = rightEyeX;
+    let rightEyeCenterY = rightEyeY;
+
+    // Randomly shift the slices (you can adjust the range as needed)
+    let leftEyeShiftX = floor(noise(-10, 10));
+    let leftEyeShiftY = floor(noise(-10, 10));
+    let rightEyeShiftX = floor(noise(-10, 10));
+    let rightEyeShiftY = floor(noise(-10, 10));
+
+    // Calculate the position of the cropped area centered on the left eye
+    let leftEyeCropX = leftEyeCenterX - eyeSize / 2 + leftEyeShiftX;
+    let leftEyeCropY = leftEyeCenterY - eyeSize / 2 + leftEyeShiftY;
+
+    // Calculate the position of the cropped area centered on the right eye
+    let rightEyeCropX = rightEyeCenterX - eyeSize / 2 + rightEyeShiftX;
+    let rightEyeCropY = rightEyeCenterY - eyeSize / 2 + rightEyeShiftY;
+
+    // Copy a horizontal slice from the left eye
+    let leftEyeSlice = video.get(
+      leftEyeCropX,
+      leftEyeCropY,
+      eyeSize,
+      eyeSize
+    );
+
+    // Copy a horizontal slice from the right eye
+    let rightEyeSlice = video.get(
+      rightEyeCropX,
+      rightEyeCropY,
+      eyeSize,
+      eyeSize
+    );
+
+    // Check if leftEyeSlice and rightEyeSlice have valid dimensions
+    if (leftEyeSlice.width > 0 && leftEyeSlice.height > 0) {
+      // Draw the sliced video onto the canvas centered on the left eye
+      image(leftEyeSlice, leftEyeCenterX, leftEyeCenterY, eyeSize, eyeSize);
+    }
+
+    if (rightEyeSlice.width > 0 && rightEyeSlice.height > 0) {
+      // Draw the sliced video onto the canvas centered on the right eye
+      image(rightEyeSlice, rightEyeCenterX, rightEyeCenterY, eyeSize, eyeSize);
+    }
+  }
 }

@@ -2,6 +2,8 @@
 
 ## GRIDS
 
+![Example Image](content/day02/IMG_3096.jpg)
+
 ### mistake
 
 Wanted to create a grid but got this instead. Which is nice as well.

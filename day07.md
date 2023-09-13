@@ -2,6 +2,9 @@
 
 ## following day of face detection
 
+![Example Image](content/day07/Bild1.jpg)
+
+
 Well that wasn't really my plan either, but I was happy with the result. 
 
 

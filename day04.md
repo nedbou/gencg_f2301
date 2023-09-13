@@ -2,7 +2,8 @@
 
 ## drawing
 
-### in the making
+### it should work, but maybe it doesn't.
+
 click enter to start drawing. make loud noise so the stroke gets thicker.
 
 {% raw %}
