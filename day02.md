@@ -2,7 +2,7 @@
 
 ## GRIDS
 
-![Example Image](content/day02/IMG_3096.jpg)
+![Example Image](content/day02/IMG_3096.JPG)
 
 ### mistake
 
